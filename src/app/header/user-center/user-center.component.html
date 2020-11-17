@@ -1,0 +1,18 @@
+<div class="header" style="padding:20px;">
+  <div class="logo" >
+    <h1>XXX平台</h1>
+  </div>
+  <button (click)="login()" *ngIf="!isLogin()" nz-button nzType="default" >登录</button>
+  <div *ngIf="isLogin()" >
+    <a *ngIf="userInfo" [nzDropdownMenu]="menu" class="username" nz-dropdown>
+      {{userInfo.username}}<i nz-icon nzTheme="outline" nzType="down"></i>
+    </a>
+    <nz-dropdown-menu #menu="nzDropdownMenu" class="user">
+      <ul nz-menu nzSelectable>
+        <li nz-menu-item>
+          <a (click)="logout()">退出登录</a>
+        </li>
+      </ul>
+    </nz-dropdown-menu>
+  </div>
+</div>
