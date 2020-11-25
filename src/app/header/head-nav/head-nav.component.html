@@ -1,0 +1,64 @@
+<TabBar
+  [hidden]="hidden"
+  [barTintColor]="'white'"
+  [tintColor]="tintColor"
+  [ngStyle]="tabbarStyle"
+  [activeTab]="selectedIndex"
+  [unselectedTintColor]="unselectedTintColor"
+  [tabBarPosition]="topFlag ? 'top' : 'bottom'"
+  (onPress)="tabBarTabOnPress($event)"
+>
+  <ng-container  *ngFor="let item of navItem, index as i">
+    <TabBarItem [title]="item.name" [key]="i"  [icon]="icon1" [selectedIcon]="icon11">
+      <ng-template #icon1>
+        <div [ngStyle]="{'background':item.normal}"
+          style="width:65px;height: 65px;margin-top:50px;border-radius: 50%;
+          display: inline-flex;justify-content: center;align-items: center"
+        >
+          <img src="{{item.iconUrl}}" style="width:48px;height:48px">
+        </div>
+      </ng-template>
+      <ng-template #icon11>
+        <div [ngStyle]="{'background':item.focus}"
+             style="width:65px;height: 65px;margin-top:50px;border-radius: 50%;
+          display: inline-flex;justify-content: center;align-items: center;border:2px solid #515151"
+        >
+          <img src="{{item.iconUrl}}" style="width:48px;height:48px">
+        </div>
+      </ng-template>
+      <div style="background-color: white; height: 100%; text-align: center;padding-top:60px;" >
+        <div style="background: #ededed40;height:100%">
+          <div style="border-top:2px solid #51515140">{{item.name}} tab</div>
+          <ng-container>
+            <ng-template [ngTemplateOutlet]="contentlist[0]"></ng-template>
+          </ng-container>
+        </div>
+      </div>
+    </TabBarItem>
+  </ng-container>
+
+</TabBar>
+<ng-template #content>
+  <div style="width: 100%;border:1px solid #515151;height:40%">
+    <div style="display: inline-block;width: 60%;height:100%;border:1px solid #515151;overflow: auto">
+      <a style="display: block; margin-top: 10px; margin-bottom: 10px; color: #108ee9" (click)="showNextTabBar($event)">
+        Click to next tab-bar
+      </a>
+
+      <a style="display: block; margin-top: 10px; margin-bottom: 10px; color: #108ee9" (click)="showTabBar($event)">
+        Click to show/hide tab-bar
+      </a>
+      <a style="display: block; margin-top: 10px; margin-bottom: 10px; color: #108ee9" (click)="changePosition($event)">
+        Click to change tab-bar position top/bottom
+      </a>
+      <a style="display: block; margin-bottom: 10px; color: #108ee9" (click)="showFullScreen($event)">
+        Click to switch fullscreen
+      </a>
+    </div>
+    <div style="display: inline-block;width: 39%;height:100%;border:1px solid #515151"></div>
+  </div>
+  <div style="width: 100%;border:1px solid #515151;height:40%">
+    <div style="display: inline-block;width: 60%;height:100%;border:1px solid #515151"></div>
+    <div style="display: inline-block;width: 39%;height:100%;border:1px solid #515151"></div>
+  </div>
+</ng-template>
